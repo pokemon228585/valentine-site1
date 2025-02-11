@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Валентинка</title>
+    <style>
+        body { text-align: center; font-family: Arial, sans-serif; background-color: pink; }
+        .slide { display: none; }
+        .active { display: block; }
+        img { width: 80%; max-width: 600px; border-radius: 10px; }
+        .buttons { margin-top: 20px; }
+        button { padding: 10px 20px; font-size: 18px; margin: 5px; cursor: pointer; }
+        video { width: 80%; max-width: 600px; border-radius: 10px; }
+    </style>
+</head>
+<body>
+    <div id="slide1" class="slide active">
+        <img src="assets/slide1.jpg" alt="Слайд 1">
+        <h2>Ты меня любишь?</h2>
+        <div class="buttons">
+            <button onclick="nextSlide(true)">Да</button>
+            <button onclick="nextSlide(false)">Нет</button>
+        </div>
+    </div>
+    
+    <div id="slide2" class="slide">
+        <img src="assets/slide2.jpg" alt="Слайд 2">
+        <h2>Я знал!</h2>
+        <button onclick="nextSlide(true)">Дальше</button>
+    </div>
+    
+    <div id="slide3" class="slide">
+        <img src="assets/slide3.jpg" alt="Слайд 3">
+        <h2>Мы?(ахвхавхахвахвахвыахыахыхвах)</h2>
+        <video src="assets/video.mp4" autoplay loop></video>
+    </div>
+    
+    <div id="kapec" class="slide">
+        <h1 style="font-size: 50px; color: red;">КАПЕЦ.😥😥😥</h1>
+    </div>
+    
+    <script>
+        let currentSlide = 1;
+        function nextSlide(isYes) {
+            document.getElementById(`slide${currentSlide}`).classList.remove('active');
+            if (!isYes) {
+                document.getElementById('kapec').classList.add('active');
+                return;
+            }
+            currentSlide++;
+            let next = document.getElementById(`slide${currentSlide}`);
+            if (next) {
+                next.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
