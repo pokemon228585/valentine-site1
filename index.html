@@ -11,7 +11,10 @@
         img { width: 80%; max-width: 600px; border-radius: 10px; }
         .buttons { margin-top: 20px; }
         button { padding: 10px 20px; font-size: 18px; margin: 5px; cursor: pointer; }
-        video { width: 80%; max-width: 600px; border-radius: 10px; }
+        .slideshow-container { position: relative; max-width: 600px; margin: auto; }
+        .slide-show { display: none; width: 100%; border-radius: 10px; }
+        .show-active { display: block; }
+        #slide3 { background: url('https://i.pinimg.com/736x/f8/6d/13/f86d13ad5d6d8a0f1378535ce16ade0b.jpg') no-repeat center center; background-size: cover; padding: 20px; }
     </style>
 </head>
 <body>
@@ -31,13 +34,16 @@
     </div>
     
     <div id="slide3" class="slide">
-        <img src="assets/slide3.jpg" alt="Слайд 3">
-        <h2>Мы?(конечно мы кто ж еще)</h2>
-        <video src="assets/video.mp4" autoplay loop></video>
+        <h2>Ну мы)</h2>
+        <div class="slideshow-container">
+            <img class="slide-show" src="assets/slideshow1.jpg" alt="Слайд 1">
+            <img class="slide-show" src="assets/slideshow2.jpg" alt="Слайд 2">
+            <img class="slide-show" src="assets/slideshow3.jpg" alt="Слайд 3">
+        </div>
     </div>
     
     <div id="kapec" class="slide">
-        <h1 style="font-size: 50px; color: red;">КАПЕЦ.😥😥😥</h1>
+        <h1 style="font-size: 50px; color: red;">КАПЕЦ.</h1>
     </div>
     
     <script>
@@ -52,7 +58,22 @@
             let next = document.getElementById(`slide${currentSlide}`);
             if (next) {
                 next.classList.add('active');
+                if (currentSlide === 3) {
+                    showSlides();
+                }
             }
+        }
+        
+        let slideIndex = 0;
+        function showSlides() {
+            let slides = document.getElementsByClassName("slide-show");
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].classList.remove("show-active");
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1; }
+            slides[slideIndex - 1].classList.add("show-active");
+            setTimeout(showSlides, 2000);
         }
     </script>
 </body>
